@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    {% block body %}
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <a href="{{ path("questions_new") }}" class="btn btn-info">NEW </a>
+                <a href="{{ path("questions_list") }}" class="btn btn-success">List </a>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    {% endblock %}
+    {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+        {% block body %}
+            {{ form_start(form1) }}
+            {{ form_widget(form1) }}
+            <button type="submit" class="btn btn-success">Update</button>
+            {{ form_end(form1) }}
+        {% endblock %}
+

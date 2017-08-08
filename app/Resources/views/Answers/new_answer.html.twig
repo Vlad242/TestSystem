@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+        {% block body %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-success">Add</button>
+            <a href="{{ path("answers_list", {'id': question.id})}}" class="btn btn-info">Close</a>
+            {{ form_end(form) }}
+        {% endblock %}
+

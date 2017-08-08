@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container" align="right">
+        <td><a class="btn btn-primary" href="{{ path('homepage')}}">Home</a></td>
+    </div>
+    <div class="container">
+        <table class="table tab-content">
+            <thead>
+            <tr class="success">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Count</th>
+                <th>Answers list</th>
+                <th>Question name update</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for question in questions %}
+                <tr>
+                    <td>{{ question.id }}</td>
+                    <td>{{ question.name }}</td>
+                    <td>{{ question.answers|length }}</td>
+                    <td><a class="btn btn-info " href="{{ path('answers_list', {'id': question.id}) }}">Answers list</a></td>
+                    <td><a class="btn btn-success " href="{{ path('question_update', {'id': question.id}) }}">Question update</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

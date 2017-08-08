@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <table class="table tab-content">
+            <thead>
+            <tr class="success">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Truth</th>
+                <th>Answer update</th>
+                <th>Answer delete</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for answer in question.answers %}
+                <tr>
+                    <td>{{ answer.id }}</td>
+                    <td>{{ answer.name }}</td>
+                    <td>{{ answer.truth }}</td>
+                    <td><a class="btn btn-warning " href="{{ path('answers_update', {'id': answer.id}) }}">Answers update</a></td>
+                    <td><a class="btn btn-danger " href="{{ path('answers_delete', {'id': answer.id}) }}">Answers delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container" align="right">
+        <td><a class="btn btn-success" href="{{ path('answers_new', {'id': question.id}) }}">Answers add</a></td>
+        <td><a class="btn btn-info"  href="{{ path('questions_list') }}">Back</a></td>
+    </div>
+{% endblock %}

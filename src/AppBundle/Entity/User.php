@@ -1,5 +1,10 @@
 <?php
-// src/AppBundle/Entity/User.php
+/**
+ * Created by PhpStorm.
+ * User: vlad
+ * Date: 04.08.17
+ * Time: 11:43
+ */
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -262,22 +267,6 @@ class User implements UserInterface, AdvancedUserInterface, \JsonSerializable
         ];
     }
 
-    /**
-     * Returns the roles granted to the user.
-     *
-     * <code>
-     * public function getRoles()
-     * {
-     *     return array('ROLE_USER');
-     * }
-     * </code>
-     *
-     * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return (Role|string)[] The user roles
-     */
     public function getRoles()
     {
         return [$this->getRole()];
@@ -292,7 +281,7 @@ class User implements UserInterface, AdvancedUserInterface, \JsonSerializable
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**
@@ -324,8 +313,10 @@ class User implements UserInterface, AdvancedUserInterface, \JsonSerializable
         $this->plainPassword = $pass;
     }
 
-
-    private function getPlainPassword()
+    /**
+     * @return string
+     */
+    public function getPlainPassword()
     {
         return $this->plainPassword;
     }
