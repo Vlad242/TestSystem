@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="User")
  */
-class User implements UserInterface, AdvancedUserInterface, \JsonSerializable
+class User implements AdvancedUserInterface
 {
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_USER = 'ROLE_USER';
@@ -94,15 +94,6 @@ class User implements UserInterface, AdvancedUserInterface, \JsonSerializable
     public function getId()
     {
         return $this->id;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName();
     }
 
     /**
@@ -257,19 +248,11 @@ class User implements UserInterface, AdvancedUserInterface, \JsonSerializable
         $this->locked = $locked;
     }
 
-
-
-    public function jsonSerialize()
-    {
-        return [
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-        ];
-    }
-
     public function getRoles()
     {
-        return [$this->getRole()];
+        return [
+            $this->getRole()
+        ];
     }
 
     /**

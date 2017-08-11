@@ -2,23 +2,24 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Answer;
+use AppBundle\Entity\Test;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AnswerType extends AbstractType
+class SetType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name')
-            ->add('truth');
+                ->add('mark');
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Answer::class
+            'data_class' => Test::class
         ]);
     }
 }

@@ -23,7 +23,7 @@ class Question
     private $tests;
 
     /**
-     * @ORM\OneToMany(targetEntity="Answer", mappedBy="answers")
+     * @ORM\OneToMany(targetEntity="Answer", mappedBy="questions")
      */
     private $answers;
 
@@ -154,4 +154,13 @@ class Question
     {
         return $this->answers;
     }
+
+    /**
+     * @param mixed $answers
+     */
+    public function setAnswers($answers)
+    {
+        $this->answers = $answers;
+    }
+
 }

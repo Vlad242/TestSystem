@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+  {% block body %}
+      <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4" align="left">
+              {{ form(form) }}
+              {{ form_widget(form) }}
+              <button type="submit" class="btn btn-success">Add</button>
+              <a class="btn btn-warning" href="{{ path('user_login') }} ">Back</a>
+              {{ form_end(form) }}
+          </div>
+      </div>
+  {% endblock %}

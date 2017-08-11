@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Answer
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="questions")
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="answers")
      */
     private $questions;
 
