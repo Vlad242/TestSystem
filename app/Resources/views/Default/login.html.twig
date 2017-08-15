@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
   {% block body %}
-      <div class="panel panel-success">
+      <div class=" panel-success">
           <div class="col-sm-4"></div>
           <div class="col-sm-4">
-          <div class="panel-heading">
+          <div class="panel panel-heading">
                   <h3>Login</h3>
           </div>
-          <div class="panel-body">
+          <div class="panel panel-body">
               {% if error%}
                 <div class="alert alert-danger">
                     {{ error.messageKey }}
@@ -15,16 +15,16 @@
               <form method="post" action="{{ path('login_check') }}">
                   <div lang="form-group">
                       <label for="username">Username:</label>
-                      <input type="text" name="username" id="_username" class="form-control" value="{{ last_username }}">
+                      <input title="Enter your username!" type="text" name="username" id="_username" class="form-control" value="{{ last_username }}">
                   </div>
                   <div lang="form-group">
                       <label for="password">Password:</label>
-                      <input type="password" name="password" id="_password" class="form-control">
+                      <input title="Enter your password!" type="password" name="password" id="_password" class="form-control">
                   </div>
                   <div lang="form-group">
-                      <button class="btn btn-success pull-right">Connect</button>
+                      <button class="btn btn-success pull-right">LogIn</button>
+                      <a class="btn btn-info pull-left" href="{{ path("register") }}">Registration</a>
                   </div>
-                  <a class="btn btn-info pull-left" href="{{ path("register") }}">Registration</a>
               </form>
           </div>
           </div>
