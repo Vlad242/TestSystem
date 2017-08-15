@@ -26,7 +26,7 @@
         </table>
     </div>
     <div class="container" align="right">
-        <td><a class="btn btn-success" href="{{ path('answers_new', {'id': question.id}) }}">Answers add</a></td>
-        <td><a class="btn btn-info"  href="{{ path('questions_list') }}">Back</a></td>
+        <a class="btn btn-success" href="{{ path('answers_new', {'id': question.id}) }}">Answers add</a>
+        <a class="btn btn-info"  href="{{ path('questions_list') }}">Back</a>
     </div>
 {% endblock %}

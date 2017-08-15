@@ -11,7 +11,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Answer;
 use AppBundle\Entity\Question;
 use AppBundle\Form\AnswerType;
-use Doctrine\ORM\QueryBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

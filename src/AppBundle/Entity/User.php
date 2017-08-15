@@ -8,7 +8,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -67,8 +66,7 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      *
-     * @Assert\NotNull(message="Role should not be blank.")
-     * @ORM\Column(type="string", length=191)
+     * @ORM\Column(type="string", length=191, options={"default" = "ROLE_USER"})
      */
     private $role;
 
@@ -291,7 +289,10 @@ class User implements AdvancedUserInterface
         return $this->role;
     }
 
-    private function setPlainPassword($pass)
+    /**
+     * @param string $pass
+     */
+    public function setPlainPassword($pass)
     {
         $this->plainPassword = $pass;
     }
