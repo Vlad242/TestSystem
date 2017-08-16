@@ -31,6 +31,8 @@ security:
                 check_path: login_check
                 username_parameter: username
                 password_parameter: password
+                always_use_default_target_path: true
+                default_target_path: /
             logout:
                 path: logout
 
@@ -38,3 +40,5 @@ security:
           - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
           - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY}
           - { path: ^/, roles: IS_AUTHENTICATED_FULLY}
+#          - { path: ^/, roles: 'ROLE_ADMIN'}
+#          - { path: ^/questions/list, roles: 'ROLE_USER'}

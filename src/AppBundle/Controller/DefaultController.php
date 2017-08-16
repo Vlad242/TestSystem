@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DefaultController extends Controller
@@ -15,9 +16,15 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(UserInterface $user)
     {
-        return $this->render('base.html.twig');
+        var_dump($user->getRoles());
+        $userRole = $user->getRoles();
+        if ($userRole[0] == 'ROLE_ADMIN'){
+            return $this->redirectToRoute('Admin_room');
+        }else{
+            return $this->redirectToRoute('User_room');
+        }
     }
 
     /**
@@ -25,16 +32,13 @@ class DefaultController extends Controller
      */
     public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render(
             ':Default:login.html.twig',
             array(
-                // last username entered by the user
                 'last_username' => $lastUsername,
                 'error'         => $error,
             )
@@ -46,8 +50,7 @@ class DefaultController extends Controller
      */
     public function loginCheckAction()
     {
-        // this controller will not be executed,
-        // as the route is handled by the Security system
+
     }
 
     /**

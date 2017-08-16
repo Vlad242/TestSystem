@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-sm-2"><h3>Hello {{ username }}</h3></div>
+        <div class="col-sm-8">
+            <a href="{{ path("questions_new") }}" class="btn btn-info">
+                <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> NEW </a>
+            <a href="{{ path("questions_list") }}" class="btn btn-success">
+                <span class="glyphicon glyphicon glyphicon-th-list" aria-hidden="true"></span> List </a>
+            <a href="{{ path("test_new") }}" class="btn btn-primary">
+                <span class="glyphicon glyphicon glyphicon glyphicon-check" aria-hidden="true"></span> Test </a>
+        </div>
+        <div class="col-sm-2">
+            <a href="{{ path("login") }}" class="btn btn-primary">
+                <span class="glyphicon glyphicon glyphicon glyphicon-log-in" aria-hidden="true"></span>  LogIn </a>
+            <a href="{{ path("logout") }}" class="btn btn-danger">
+                <span class="glyphicon glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span>  LogOut </a>
+        </div>
+    </div>
+{% endblock %}
