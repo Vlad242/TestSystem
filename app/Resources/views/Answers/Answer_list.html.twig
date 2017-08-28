@@ -18,15 +18,19 @@
                     <td>{{ answer.id }}</td>
                     <td>{{ answer.name }}</td>
                     <td>{{ answer.truth }}</td>
-                    <td><a class="btn btn-warning " href="{{ path('answers_update', {'id': answer.id}) }}">Answers update</a></td>
-                    <td><a class="btn btn-danger " href="{{ path('answers_delete', {'id': answer.id}) }}">Answers delete</a></td>
+                    <td><a class="btn btn-warning " href="{{ path('answers_update', {'id': answer.id}) }}">
+                            <span class="glyphicon glyphicon glyphicon glyphicon-refresh" aria-hidden="true"></span> Answers update</a></td>
+                    <td><a class="btn btn-danger " href="{{ path('answers_delete', {'id': answer.id}) }}">
+                            <span class="glyphicon glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Answers delete</a></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
     <div class="container" align="right">
-        <a class="btn btn-success" href="{{ path('answers_new', {'id': question.id}) }}">Answers add</a>
-        <a class="btn btn-info"  href="{{ path('questions_list') }}">Back</a>
+        <a class="btn btn-success" href="{{ path('answers_new', {'id': question.id}) }}">
+            <span class="glyphicon glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> Answers add</a>
+        <a class="btn btn-info"  href="{{ path('questions_list') }}">
+            <span class="glyphicon glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span> Back</a>
     </div>
 {% endblock %}

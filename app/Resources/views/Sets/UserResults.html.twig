@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+        {% block body %}
+            <div class="row">
+            <div class="col-sm-2"> <h3>Your result {{ trues }} from {{ set.setAnswers|length }}</h3></div>
+            <div class="col-sm-8">
+                <a href="{{ path("homepage") }}" class="btn btn-info">
+                    <span class="glyphicon glyphicon glyphicon-home" aria-hidden="true"></span> Home </a>
+                 </div>
+        {% endblock %}

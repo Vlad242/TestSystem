@@ -9,17 +9,25 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\SetAnswer;
+use AppBundle\Entity\Question;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AnswerRepository")
  * @ORM\Table(name="Answer")
  */
 class Answer
 {
     /**
+     * @ORM\OneToMany(targetEntity="SetAnswer", mappedBy="answer")
+     */
+    private $setAnswers;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Question", inversedBy="answers")
      */
-    private $questions;
+    private $question;
 
     /**
      * @var int
@@ -44,6 +52,13 @@ class Answer
      */
     private $truth;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->setAnswers = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -104,26 +119,68 @@ class Answer
     }
 
     /**
-     * Set questions
+     * Add setAnswer
      *
-     * @param \AppBundle\Entity\Question $questions
+     * @param SetAnswer $setAnswer
      *
      * @return Answer
      */
-    public function setQuestions(\AppBundle\Entity\Question $questions = null)
+    public function addSetAnswer(SetAnswer $setAnswer)
     {
-        $this->questions = $questions;
+        $this->setAnswers[] = $setAnswer;
 
         return $this;
     }
 
     /**
-     * Get questions
+     * Remove setAnswer
      *
-     * @return \AppBundle\Entity\Question
+     * @param SetAnswer $setAnswer
      */
-    public function getQuestions()
+    public function removeSetAnswer(SetAnswer $setAnswer)
     {
-        return $this->questions;
+        $this->setAnswers->removeElement($setAnswer);
+    }
+
+    /**
+     * Get setAnswers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSetAnswers()
+    {
+        return $this->setAnswers;
+    }
+
+    /**
+     * Set question
+     *
+     * @param Question $question
+     *
+     * @return Answer
+     */
+    public function setQuestion(Question $question = null)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Get question
+     *
+     * @return Question
+     */
+    public function getQuestion()
+    {
+        return $this->question;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

@@ -17,9 +17,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Answer
 {
     /**
+     * @ORM\OneToMany(targetEntity="SetAnswer", mappedBy="answer")
+     */
+    private $setAnswers;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Question", inversedBy="answers")
      */
-    private $questions;
+    private $question;
 
     /**
      * @var int
@@ -44,6 +49,13 @@ class Answer
      */
     private $truth;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->setAnswers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -104,26 +116,60 @@ class Answer
     }
 
     /**
-     * Set questions
+     * Add setAnswer
      *
-     * @param \AppBundle\Entity\Question $questions
+     * @param \AppBundle\Entity\SetAnswer $setAnswer
      *
      * @return Answer
      */
-    public function setQuestions(\AppBundle\Entity\Question $questions = null)
+    public function addSetAnswer(\AppBundle\Entity\SetAnswer $setAnswer)
     {
-        $this->questions = $questions;
+        $this->setAnswers[] = $setAnswer;
 
         return $this;
     }
 
     /**
-     * Get questions
+     * Remove setAnswer
+     *
+     * @param \AppBundle\Entity\SetAnswer $setAnswer
+     */
+    public function removeSetAnswer(\AppBundle\Entity\SetAnswer $setAnswer)
+    {
+        $this->setAnswers->removeElement($setAnswer);
+    }
+
+    /**
+     * Get setAnswers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSetAnswers()
+    {
+        return $this->setAnswers;
+    }
+
+    /**
+     * Set question
+     *
+     * @param \AppBundle\Entity\Question $question
+     *
+     * @return Answer
+     */
+    public function setQuestion(\AppBundle\Entity\Question $question = null)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Get question
      *
      * @return \AppBundle\Entity\Question
      */
-    public function getQuestions()
+    public function getQuestion()
     {
-        return $this->questions;
+        return $this->question;
     }
 }

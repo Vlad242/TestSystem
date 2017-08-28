@@ -15,22 +15,26 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * @param UserInterface $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function indexAction(UserInterface $user)
     {
-        var_dump($user->getRoles());
+       // var_dump($user->getRoles());
         $userRole = $user->getRoles();
         if ($userRole[0] == 'ROLE_ADMIN'){
-            return $this->redirectToRoute('Admin_room');
+            return $this->redirectToRoute('admin_room');
         }else{
-            return $this->redirectToRoute('User_room');
+            return $this->redirectToRoute('user_room');
         }
     }
 
     /**
      * @Route("/login", name="login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
+    public function loginAction(AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -55,6 +59,9 @@ class DefaultController extends Controller
 
     /**
      * @Route("/register", name="register")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {

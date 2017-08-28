@@ -4,8 +4,10 @@
                 <div class="col-sm-3">
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    <button type="submit" class="btn btn-success">Add</button>
-                    <a href="{{ path("answers_list", {'id': question.id}) }}" class="btn btn-info">Close</a>
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                    <a href="{{ path("answers_list", {'id': question.id}) }}" class="btn btn-info">
+                        <span class="glyphicon glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span> Close</a>
                     {{ form_end(form) }}
                 </div>
             </div>

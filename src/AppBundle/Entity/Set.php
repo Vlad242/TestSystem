@@ -5,52 +5,42 @@
  * Date: 04.08.17
  * Time: 11:43
  */
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use AppBundle\Entity\Answer;
+use AppBundle\Entity\User;
 use AppBundle\Entity\SetAnswer;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionRepository")
- * @ORM\Table(name="Question")
+ * @ORM\Entity
+ * @ORM\Table(name="`Set`")
  */
-class Question
+class Set
 {
-    /**
-     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question")
-     */
-    private $answers;
-
-    /**
-     * @ORM\OneToMany(targetEntity="SetAnswer", mappedBy="question")
-     */
-    private $setAnswers;
 
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="sets")
+     */
+    private $user;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=100)
+     * @ORM\OneToMany(targetEntity="SetAnswer", mappedBy="set", cascade={"persist"})
      */
-    private $name;
+    private $setAnswers;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->answers = new ArrayCollection();
         $this->setAnswers = new ArrayCollection();
     }
 
@@ -65,61 +55,27 @@ class Question
     }
 
     /**
-     * Set name
+     * Set user
      *
-     * @param string $name
+     * @param User $user
      *
-     * @return Question
+     * @return Set
      */
-    public function setName($name)
+    public function setUser(User $user = null)
     {
-        $this->name = $name;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get user
      *
-     * @return string
+     * @return User
      */
-    public function getName()
+    public function getUser()
     {
-        return $this->name;
-    }
-
-    /**
-     * Add answer
-     *
-     * @param Answer $answer
-     *
-     * @return Question
-     */
-    public function addAnswer(Answer $answer)
-    {
-        $this->answers[] = $answer;
-
-        return $this;
-    }
-
-    /**
-     * Remove answer
-     *
-     * @param Answer $answer
-     */
-    public function removeAnswer(Answer $answer)
-    {
-        $this->answers->removeElement($answer);
-    }
-
-    /**
-     * Get answers
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAnswers()
-    {
-        return $this->answers;
+        return $this->user;
     }
 
     /**
@@ -127,7 +83,7 @@ class Question
      *
      * @param SetAnswer $setAnswer
      *
-     * @return Question
+     * @return Set
      */
     public function addSetAnswer(SetAnswer $setAnswer)
     {

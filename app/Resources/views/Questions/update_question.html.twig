@@ -2,7 +2,8 @@
         {% block body %}
             {{ form_start(form1) }}
             {{ form_widget(form1) }}
-            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon glyphicon glyphicon-refresh" aria-hidden="true"></span> Update</button>
             {{ form_end(form1) }}
         {% endblock %}
 

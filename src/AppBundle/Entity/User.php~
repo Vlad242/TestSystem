@@ -85,6 +85,11 @@ class User implements AdvancedUserInterface
     protected $enabled;
 
     /**
+     * @ORM\OneToMany(targetEntity="Set", mappedBy="user")
+     */
+    private $sets;
+
+    /**
      * Get id
      *
      * @return integer
@@ -303,5 +308,46 @@ class User implements AdvancedUserInterface
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add set
+     *
+     * @param \AppBundle\Entity\Set $set
+     *
+     * @return User
+     */
+    public function addSet(\AppBundle\Entity\Set $set)
+    {
+        $this->sets[] = $set;
+
+        return $this;
+    }
+
+    /**
+     * Remove set
+     *
+     * @param \AppBundle\Entity\Set $set
+     */
+    public function removeSet(\AppBundle\Entity\Set $set)
+    {
+        $this->sets->removeElement($set);
+    }
+
+    /**
+     * Get sets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSets()
+    {
+        return $this->sets;
     }
 }

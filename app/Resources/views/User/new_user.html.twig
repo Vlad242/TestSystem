@@ -5,8 +5,10 @@
           <div class="col-sm-4" align="left">
               {{ form_start(form) }}
               {{ form_widget(form) }}
-              <button type="submit" class="btn btn-success">Add</button>
-              <a class="btn btn-warning" href="{{ path('login') }} ">Back</a>
+              <button type="submit" class="btn btn-success">
+                  <span class="glyphicon glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+              <a class="btn btn-warning" href="{{ path('login') }} ">
+                  <span class="glyphicon glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span> Back</a>
               {{ form_end(form) }}
           </div>
       </div>

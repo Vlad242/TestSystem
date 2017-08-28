@@ -19,11 +19,14 @@ class AnswerController extends Controller
 {
     /**
      * @Route("/answers/new/{id}", name="answers_new")
+     * @param Request $request
+     * @param Question $question
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request, Question $question)
     {
         $answer = new Answer();
-        $answer->setQuestions($question);
+        $answer->setQuestion($question);
         $form = $this->createForm(AnswerType::class, $answer);
         $form->handleRequest($request);
 
@@ -41,6 +44,8 @@ class AnswerController extends Controller
 
     /**
      * @Route("/answer/list/{id}", name="answers_list")
+     * @param Question $question
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction(Question $question)
     {
@@ -49,6 +54,9 @@ class AnswerController extends Controller
 
     /**
      * @Route("/answers/update/{id}", name="answers_update")
+     * @param Request $request
+     * @param Answer $answer
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function updateAction(Request $request, Answer $answer)
     {
@@ -57,7 +65,7 @@ class AnswerController extends Controller
 
         if ($form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('answers_list', ['id' => $answer->getQuestions()->getId()]);
+            return $this->redirectToRoute('answers_list', ['id' => $answer->getQuestion()->getId()]);
         }
 
         return $this->render('Answers/update_answer.html.twig', [
@@ -67,17 +75,13 @@ class AnswerController extends Controller
 
     /**
      * @Route("/delete/{id}", name="answers_delete")
+     * @param Answer $answer
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Answer $answer)
     {
         $em = $this->getDoctrine()->getManager();
         $answer = $em->getRepository(Answer::class)->find($answer);
-
-        if (!$answer) {
-            throw $this->createNotFoundException(
-                'No product found for id ' . $answer
-            );
-        }
         $em->remove($answer);
         $em->flush();
 

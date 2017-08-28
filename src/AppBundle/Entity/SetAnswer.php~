@@ -1,0 +1,45 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: vlad
+ * Date: 04.08.17
+ * Time: 11:43
+ */
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="SetAnswer")
+ */
+class SetAnswer
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Answer", inversedBy="setAnswers")
+     */
+    private $answer;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="setAnswers")
+     */
+    private $question;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Set", inversedBy="setAnswers")
+     */
+    private $set;
+
+
+}

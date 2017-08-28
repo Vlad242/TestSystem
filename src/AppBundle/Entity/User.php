@@ -10,6 +10,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Set;
 
 /**
  * @ORM\Entity
@@ -83,6 +85,11 @@ class User implements AdvancedUserInterface
      * @ORM\Column(type="boolean", nullable=true, options={"default" = true})
      */
     protected $enabled;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Set", mappedBy="user")
+     */
+    private $sets;
 
     /**
      * Get id
@@ -303,5 +310,46 @@ class User implements AdvancedUserInterface
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sets = new ArrayCollection();
+    }
+
+    /**
+     * Add set
+     *
+     * @param Set $set
+     *
+     * @return User
+     */
+    public function addSet(Set $set)
+    {
+        $this->sets[] = $set;
+
+        return $this;
+    }
+
+    /**
+     * Remove set
+     *
+     * @param Set $set
+     */
+    public function removeSet(Set $set)
+    {
+        $this->sets->removeElement($set);
+    }
+
+    /**
+     * Get sets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSets()
+    {
+        return $this->sets;
     }
 }

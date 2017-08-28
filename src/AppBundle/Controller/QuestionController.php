@@ -19,6 +19,8 @@ class QuestionController extends Controller
 {
     /**
      * @Route("/questions/new", name="questions_new")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -49,21 +51,22 @@ class QuestionController extends Controller
 
     /**
      * @Route("/questions/update/{id}", name="question_update")
+     * @param Request $request
+     * @param Question $question
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function updateAction(Request $request, Question $id)
+    public function updateAction(Request $request, Question $question)
     {
-        $form = $this->createForm(QuestionType::class, $id);
+        $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('questions_list');
         }
 
         return $this->render('Questions/update_question.html.twig', [
             'form1' => $form->createView()
         ]);
-
     }
 }

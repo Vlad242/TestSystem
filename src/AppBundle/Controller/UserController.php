@@ -9,7 +9,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserController extends Controller
 {
     /**
-     * @Route("/User/Room", name="User_room")
+     * @Route("/user/room", name="user_room")
+     * @param UserInterface $user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(UserInterface $user)
     {
