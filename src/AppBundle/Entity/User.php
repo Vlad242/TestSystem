@@ -61,7 +61,6 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="Password should not be blank.")
      */
     private $plainPassword;
 

@@ -4,11 +4,11 @@ namespace AppBundle\Command;
 
 
 use AppBundle\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class CreateUserCommand extends Command
@@ -16,7 +16,7 @@ class CreateUserCommand extends Command
     private $em;
     private $encoder;
 
-    public function __construct(Registry $doctrine, UserPasswordEncoder $encoder)
+    public function __construct(ManagerRegistry $doctrine, UserPasswordEncoderInterface $encoder)
     {
         parent::__construct();
 
